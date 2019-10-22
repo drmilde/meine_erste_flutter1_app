@@ -10,55 +10,57 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Jans Flutter App'),
+      home: JansKleineSeite(),
     );
   }
 }
 
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class JansKleineSeite extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _JansKleineSeiteState createState() => _JansKleineSeiteState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _JansKleineSeiteState extends State<JansKleineSeite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Dr Mildes Super Seite"),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+            Image.network("https://vignette.wikia.nocookie.net/bigbangtheory/images/9/96/Colonization-application.jpg/revision/latest?cb=20170116151747&path-prefix=de"),
+            machMirNeReihe("Name:", "Jan-Torsten"),
+            machMirNeReihe("Alter", "54"),
+            machMirNeReihe("Kenntnisse", "wenige"),
+            machMirNeReihe("Hobbies", "essen"),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget machMirNeReihe(attribut, wert) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(
+            attribut,
+            style: TextStyle(
+              fontSize: 30,
+            ),
+          ),
+          Text(
+            wert,
+            style: TextStyle(
+              fontSize: 30,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
